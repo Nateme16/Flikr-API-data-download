@@ -9,7 +9,8 @@ import json
 #logs into flikr API 
 api_key = u'ce2f76d42f363d6199b9fa0d55b6869f'
 api_secret = u'cf32baacaa9132e2'
-flickr = flickrapi.FlickrAPI(api_key, api_secret,format='parsed-json') #sets format for return
+flickr = flickrapi.FlickrAPI(api_key, api_secret,format='parsed-json')
+#sets format for return
 
 #uses API functions
 photos = flickr.photos.search(user_id='73509078@N00', per_page='100',has_geo='1')
@@ -20,11 +21,20 @@ photo2=photos['photos']['photo']
 
 #function for getting list of photos taht met API query
 def encrypt(photo2):
-    results=list()
-    for i in photo2:
-        results.append( (i['id'])
-    return results
+	results=list()
+	for i in photo2:
+		results.append(i['id'])
+	return results
 
 r=encrypt(photo2)
                         
 print r
+
+#get photos by woeid
+
+capewo=flickr.places.find(query='Barnstable') #gets id for the Cape
+cape2=flickr.places.getInfo(woe_id='12588700') #gets place info
+
+cape3=flickr.photos.search(woe_id='12588700') #gets info all photos taken on Cape
+
+
