@@ -1,15 +1,10 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Nov 16 13:38:02 2015
-
-@author: nmerri02
-"""
-
 ##Python script to download Flikr data from API
 ##Author: Nate Merrill
 ##Started 11/9/2015
 
+import sys, os
 import flickrapi
+import json
 
 #logs into flikr API 
 api_key = u'ce2f76d42f363d6199b9fa0d55b6869f'
@@ -39,22 +34,7 @@ print r
 
 capewo=flickr.places.find(query='Barnstable') #gets id for the Cape
 cape2=flickr.places.getInfo(woe_id='12588700') #gets place info
+
 cape3=flickr.photos.search(woe_id='12588700') #gets info all photos taken on Cape
 
-#flickr = flickrapi.FlickrAPI(api_key, api_secret,format='etree')
-
-#this retreives all photos on the cape after datemin
-flickr = flickrapi.FlickrAPI(api_key, api_secret,format='etree') #has to be in etree format for some reason
-
-datemin= '2015-10-01'
-def pcape(datemin):
-    results2=list()
-    for photo in flickr.walk(woe_id='12588700',min_taken_date=datemin, per_page=250):
-        results2.append(photo.get('title'))
-    return results2
-    
-r2=pcape(datemin)
-    
-    
-
-
+                        
