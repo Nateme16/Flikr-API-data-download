@@ -5,28 +5,23 @@ Created on Mon Nov 16 13:38:02 2015
 @author: nmerri02
 """
 
-##Python script to download Flikr data from API
+##Python script to download Flikr location data from API
 ##Author: Nate Merrill
 ##Started 11/9/2015
 
 import flickrapi
 import numpy
+import pickle
 
 #logs into flikr API 
 api_key = u'ce2f76d42f363d6199b9fa0d55b6869f'
 api_secret = u'cf32baacaa9132e2'
-flickr = flickrapi.FlickrAPI(api_key, api_secret,format='parsed-json')
-woeid='12588700'
+woeid='12588700' #got this through search, but the API search for flickr is clumsy, so its hardcoded
 
-#get photos by woeid for Cape Cod
-cape2=flickr.places.getInfo(woe_id=woeid) #gets place info
-cape3=flickr.photos.search(woe_id=woeid) #gets info all photos taken on Cape
-
-
-#this retreives location (woeid) of all photos on the cape after datemin
+#this retreives location of all photos on the cape (woeid for Barnstable County) after datemin
 flickr = flickrapi.FlickrAPI(api_key, api_secret,format='etree') #has to be in etree format for some reason
+datemin= '2015-11-01' #minimum date 
 
-datemin= '2015-11-01'
 def pcape(datemin,woeid):
     results2=list()
     lat=list()
@@ -44,7 +39,7 @@ def pcape(datemin,woeid):
 r2=pcape(datemin,woeid)
 locmat=numpy.array(r2)
 
-
-    
-
-
+#this saves the data to a file
+fileobject=open('locationdata','wb')
+pickle.dump(r2,fileobject)
+fileobject.close()

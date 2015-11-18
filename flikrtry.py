@@ -10,6 +10,7 @@ Created on Mon Nov 16 13:38:02 2015
 ##Started 11/9/2015
 
 import flickrapi
+import pickle
 
 #logs into flikr API 
 api_key = u'ce2f76d42f363d6199b9fa0d55b6869f'
@@ -46,7 +47,7 @@ cape3=flickr.photos.search(woe_id='12588700') #gets info all photos taken on Cap
 #this retreives all photos on the cape after datemin
 flickr = flickrapi.FlickrAPI(api_key, api_secret,format='etree') #has to be in etree format for some reason
 
-datemin= '2015-11-01'
+datemin= '2015-11-10'
 def pcape(datemin):
     results2=list()
     lat=list()
@@ -62,7 +63,10 @@ def pcape(datemin):
 
 r2=pcape(datemin)
 
+#This saves it to a file to be opened later
+fileobject=open('locationdata','wb')
+pickle.dump(r2,fileobject)
+fileobject.close()
 
-    
 
 
