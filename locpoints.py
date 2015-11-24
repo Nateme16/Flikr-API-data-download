@@ -1,31 +1,33 @@
 # -*- coding: utf-8 -*-
 """
+Python script to create point shapefile from locations in 'locationdata'
+
 Created on Wed Nov 18 16:42:16 2015
 
 @author: nmerri02
 """
-#This creates point shapefile from locations in 'locationdata'
+
 import pickle
 import arcpy
 import numpy
 
+#opens file with the lat/lon and data from flickr_cape.py
 fileObject = open('locationdata','r')
-
 b=pickle.load(fileObject) 
 
-ptList1=map(float,b[1])
-ptList2=map(float,b[2])
-c=[ptList1,ptList2]
-
+#creates point geometry with lat/lon
+pts=pts=numpy.array(b).T
 pt=arcpy.Point()
-ptloc= []
+ptGeoms=[]
+for i in range(len(pts)):
+    print pts[i,1]
+    print pts[i,2]
+    pt.Y=pts[i,1]
+    pt.X=pts[i,2]
+    ptGeoms.append(arcpy.PointGeometry(pt))
+    
+#saves the data as a shapfile with points
+sr = arcpy.SpatialReference(4269)
+arcpy.CopyFeatures_management(ptGeoms, r"C:\Users\nmerri02\Desktop\test2\test1.shp")
+arcpy.DefineProjection_management(r"C:\Users\nmerri02\Desktop\test2\test1.shp", sr)
 
-for r in e.T:
-    print c[r]
-    pt.X= r
-    ptloc.append(arcpy.PointGeometry(pt))
-
-        
-        
-#saves it to a file "test"
-arcpy.CopyFeatures_management(ptloc, r"C:\Users\nmerri02\Desktop\test.shp")
