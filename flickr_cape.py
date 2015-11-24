@@ -1,14 +1,10 @@
 # -*- coding: utf-8 -*-
 """
+Python script to download Flikr location data from API
 Created on Mon Nov 16 13:38:02 2015
 
 @author: nmerri02
 """
-
-##Python script to download Flikr location data from API
-##Author: Nate Merrill
-##Started 11/9/2015
-
 import flickrapi
 import numpy
 import pickle
@@ -20,7 +16,7 @@ woeid='12588700' #got this through search, but the API search for flickr is clum
 
 #this retreives location of all photos on the cape (woeid for Barnstable County) after datemin
 flickr = flickrapi.FlickrAPI(api_key, api_secret,format='etree') #has to be in etree format for some reason
-datemin= '2015-11-01' #minimum date 
+datemin= '2015-01-01' #minimum date 
 
 def pcape(datemin,woeid):
     results2=list()
@@ -33,7 +29,7 @@ def pcape(datemin,woeid):
         lat.append(loc[0][0].attrib['latitude'])
         lon.append(loc[0][0].attrib['longitude'])
         accur.append(loc[0][0].attrib['accuracy'])
-        print photo
+        #print photo
     return results2,lat,lon, accur
     
 r2=pcape(datemin,woeid)
