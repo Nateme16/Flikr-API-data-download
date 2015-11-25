@@ -16,7 +16,7 @@ fileObject = open('locationdata','r')
 b=pickle.load(fileObject) 
 
 #creates point geometry with lat/lon
-pts=pts=numpy.array(b).T
+pts=numpy.array(b).T
 pt=arcpy.Point()
 ptGeoms=[]
 for i in range(len(pts)):
@@ -27,7 +27,7 @@ for i in range(len(pts)):
     ptGeoms.append(arcpy.PointGeometry(pt))
     
 #saves the data as a shapfile with points
-sr = arcpy.SpatialReference(4269)
+sr = arcpy.SpatialReference(4269) #this is the code for the projection
 arcpy.CopyFeatures_management(ptGeoms, r"C:\Users\nmerri02\Desktop\test2\test1.shp")
 arcpy.DefineProjection_management(r"C:\Users\nmerri02\Desktop\test2\test1.shp", sr)
 
