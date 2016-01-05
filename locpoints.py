@@ -28,6 +28,6 @@ for i in range(len(pts)):
     
 #saves the data as a shapfile with points
 sr = arcpy.SpatialReference(4269) #this is the code for the projection
-arcpy.CopyFeatures_management(ptGeoms, r"C:\Users\nmerri02\Desktop\test2\test1.shp")
-arcpy.DefineProjection_management(r"C:\Users\nmerri02\Desktop\test2\test1.shp", sr)
+arcpy.CopyFeatures_management(ptGeoms, r"C:\Users\nmerri02\Desktop\test2\test2.shp")
+arcpy.DefineProjection_management(r"C:\Users\nmerri02\Desktop\test2\test2.shp", sr)
 

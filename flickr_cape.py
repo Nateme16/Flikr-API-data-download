@@ -16,8 +16,8 @@ woeid='12588700' #got this through search, but the API search for flickr is clum
 
 #this retreives location of all photos on the cape (woeid for Barnstable County) after datemin
 flickr = flickrapi.FlickrAPI(api_key, api_secret,format='etree') #has to be in etree format for some reason
-datemin= '2015-07-01' #minimum date 
-datemax= '2015-08-01'
+datemin= '2013-06-01' #minimum date 
+datemax= '2015-09-01'
 
 def pcape(datemin,woeid,datemax):
     results2=list()
